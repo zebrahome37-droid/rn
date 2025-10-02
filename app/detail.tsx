@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, ScrollView, Pressable, Dimensions} from 'react-n
 import { useLocalSearchParams } from 'expo-router';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import {SimpleImageSliderThemeProvider, SimpleImageSlider} from '@one-am/react-native-simple-image-slider';
-import SizeTable from './include/sizeTable';
+import SizeTable from './include/sizeTableWithoutFlatList';
 
 const {width} = Dimensions.get('window');
 

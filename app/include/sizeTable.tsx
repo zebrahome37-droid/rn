@@ -5,7 +5,7 @@ import {
     FlatList,
     StyleSheet,
     TextInput,
-    Dimensions,
+    Dimensions, Pressable,
 } from 'react-native';
 
 const { width } = Dimensions.get('window');
@@ -14,6 +14,19 @@ const data = Array.from({ length: 18 }, (_, i) => ({ id: i.toString(), title: `I
 const NUM_COLUMNS = 3;
 
 
+const QuantityControl = ({ title, onPress }) => {
+    return (
+        <Pressable
+            onPress={onPress}
+            style={({ pressed }) => [
+                styles.QuantityControl,
+                pressed ? styles.buttonPressed : styles.buttonNormal,
+            ]}
+        >
+            <Text style={styles.buttonText}>{title}</Text>
+        </Pressable>
+    );
+};
 
 const MyComponent = () => {
     const [inputValues, setInputValues] = useState({});
@@ -32,12 +45,14 @@ const MyComponent = () => {
         if (columnIndex === NUM_COLUMNS - 1) {
             return (
                 <View style={[styles.itemContainer, { backgroundColor }, styles.inputContainer]}>
+                    <QuantityControl title={'-'} onPress={() => { alert(1) }} />
                     <TextInput
                         style={styles.input}
                         placeholder={`Input ${rowIndex + 1}`}
                         value={inputValues[rowIndex] || ''}
                         onChangeText={(text) => onChangeText(text, rowIndex)}
                     />
+                    <QuantityControl title={'+'} onPress={() => { alert(2) }} />
                 </View>
             );
         }

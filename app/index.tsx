@@ -1,7 +1,7 @@
 import React from 'react';
-import {Dimensions, ScrollView, StyleSheet, View, ListRenderItem} from "react-native";
-import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
-import {FlashList } from "@shopify/flash-list";
+import { Dimensions, StyleSheet, View } from "react-native";
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+import { FlashList } from "@shopify/flash-list";
 import Item from "./include/item";
 
 const { width } = Dimensions.get('window');
@@ -15,6 +15,7 @@ interface ItemType {
 }
 
 const DATA: ItemType[] = [
+    // ваш массив данных
     { id: '1', price1: '100 ₽', price2: '388 ₽', title: 'Женское платье М-208 / черный', imageUrl: { uri: 'https://texrio.ru/upload/resize_cache/iblock/a17/328_437_1/t4ramig5xhpby21b1i12ot8p1w70x6op.jpg' } },
     { id: '2', price1: '100 ₽', price2: '388 ₽', title: 'Женское платье М-208 / серый', imageUrl: { uri: 'https://texrio.ru/upload/resize_cache/iblock/216/328_437_1/1pom4f9l2sc0px789jurqhb6wvt70cno.jpg' } },
     { id: '3', price1: '100 ₽', price2: '388 ₽', title: 'Женское платье М-999 / Пихта кофе', imageUrl: { uri: 'https://texrio.ru/upload/resize_cache/iblock/9b8/328_437_1/03vmprb3wtw8mkfekoacrg2nz3391njx.jpg' } },
@@ -26,33 +27,22 @@ const DATA: ItemType[] = [
 ];
 
 const App: React.FC = () => {
-    const renderItem: ListRenderItem<ItemType> = ({ item }) => {
-        return <Item item={item} />;
-    };
-    return <SafeAreaProvider>
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
-            <ScrollView>
-                <View>
-                    <FlashList<ItemType>
-                        data={DATA}
-                        renderItem={renderItem}
-                        estimatedItemSize={width * 0.65}
-                        numColumns={2}
-                        keyExtractor={(item:ItemType):string=> item.id}
-                    />
-                </View>
-            </ScrollView>
-        </SafeAreaView>
-    </SafeAreaProvider>;
-};
+    const renderItem = ({ item }: { item: ItemType }) => <Item item={item} />;
 
-/*
-const {text} = StyleSheet.create({
-    text: {
-        fontSize: 25,
-        fontWeight: '500',
-    }
-});
-*/
+    return (
+        <SafeAreaProvider>
+            <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+                {/* Можно вставить дополнительные компоненты выше, если нужно */}
+                <FlashList<ItemType>
+                    data={DATA}
+                    renderItem={renderItem}
+                    estimatedItemSize={width * 0.65}
+                    numColumns={2}
+                    keyExtractor={(item) => item.id}
+                />
+            </SafeAreaView>
+        </SafeAreaProvider>
+    );
+};
 
 export default App;
