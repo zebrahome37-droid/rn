@@ -33,7 +33,7 @@ const HomeScreen = () => {
             <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
                 <ScrollView>
                     <View style={styles.container}>
-                        <Text style={styles.title}>Женское платье М-982 / Знаки</Text>
+                        <Text style={styles.title}>Женское платье М-983 / Знаки</Text>
                         <View style={styles.container}>
                             <SimpleImageSliderThemeProvider>
                                 <SimpleImageSlider
